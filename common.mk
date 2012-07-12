@@ -34,6 +34,9 @@ common_target_cflags := $(common_cflags)
 # Common host flags
 HAVE_LIBBFD := false
 
+# When building with a non-prebuilt toolchain, oprofile complains about
+# missing includes for libbfd
+ifeq ($(findstring prebuilt,$(TARGET_TOOLS_PREFIX)),prebuilt)
 ifeq ($(TARGET_ARCH),arm)
 toolchain := prebuilts/gcc/$(HOST_PREBUILT_TAG)/arm/arm-linux-androideabi-4.6
 common_host_c_includes := $(common_c_includes) $(toolchain)/include
@@ -47,6 +50,7 @@ common_host_ldlibs_libiconv := -liconv
 else
 ifeq ($(HOST_OS)-$(HOST_ARCH),linux-x86)
 HAVE_LIBBFD := true
+endif
 endif
 endif
 
