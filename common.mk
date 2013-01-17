@@ -36,7 +36,7 @@ HAVE_LIBBFD := false
 
 # When building with a non-prebuilt toolchain, oprofile complains about
 # missing includes for libbfd
-ifeq ($(findstring prebuilt,$(TARGET_TOOLS_PREFIX)),prebuilt)
+ifneq ($(findstring linaro,$(TARGET_TOOLS_PREFIX)),linaro)
 ifeq ($(TARGET_ARCH),arm)
 toolchain := prebuilts/gcc/$(HOST_PREBUILT_TAG)/arm/arm-linux-androideabi-4.6
 common_host_c_includes := $(common_c_includes) $(toolchain)/include
