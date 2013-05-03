@@ -38,7 +38,7 @@ HAVE_LIBBFD := false
 # missing includes for libbfd
 ifneq ($(findstring linaro,$(TARGET_TOOLS_PREFIX)),linaro)
 ifeq ($(TARGET_ARCH),arm)
-toolchain := prebuilts/gcc/$(HOST_PREBUILT_TAG)/arm/arm-linux-androideabi-4.7
+toolchain := prebuilts/gcc/$(HOST_PREBUILT_TAG)/arm/$(ANDROID_EABI_TOOLCHAIN_DIR)
 common_host_c_includes := $(common_c_includes) $(toolchain)/include
 common_host_cflags := $(common_cflags) -fexceptions -DANDROID_HOST -DHAVE_XCALLOC
 common_host_ldlibs_libiconv :=
